@@ -1,4 +1,6 @@
 .App {
+  width: 100vw;
+  height: 100vh !important;
   text-align: center;
 }
 
@@ -24,15 +26,7 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dark-mood {
+  background: black;
+  color: aliceblue;
 }

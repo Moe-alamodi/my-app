@@ -1,13 +1,92 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-family: sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  opacity: var(--opacity);
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  opacity: var(--opacity);
+}
+
+main {
+  margin-top: 6rem;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.light-theme {
+  --background-color: #f5f7f7;
+  --text-color: #918581;
+
+  --white: #ffffff;
+  --greyLight-3: #26272a;
+  --greyDark: #9baacf;
+  --boxshadow: 20px 20px 60px #d0d2d2, -20px -20px 60px #ffffff;
+}
+.dark-theme {
+  --background-color: #41444a;
+  --text-color: #ffffff;
+  --opacity: 87%;
+  --boxshadow: 220px 20px 60px #373a3f, -20px -20px 60px #4b4e55;
+  --primary-light: #4e5764;
+  --primary: #201c44;
+  --primary-dark: #17043b;
+
+  --greyLight-1: #e4ebf5;
+}
+.button {
+  text-decoration: none;
+  padding: 1rem;
+  background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
+  border-radius: 10rem;
+  border: none;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+.button:hover {
+  transform: scale(1.05);
+  transition: all 0.2s;
+}
+.card {
+  color: var(--text-color);
+  position: relative;
+  width: 30%;
+  height: fit-content;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  border-radius: 1rem;
+  box-shadow: var(--boxshadow);
+}
+.card__info {
+  width: 30rem;
+}
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f38e82;
+  text-transform: uppercase;
+}
+.error {
+  text-align: center;
+  color: red;
 }
