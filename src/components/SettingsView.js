@@ -6,9 +6,9 @@ const SettingsView = () => {
   const authUser = useAuth();
   const { name, birthdate, colour } = authUser.user;
   const [isEditing, setIsEditing] = useState(false);
-  const [username, setUsername] = useState("");
-  const [favcolour, setColour] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState(name);
+  const [favcolour, setColour] = useState(colour);
+  const [birthday, setBirthday] = useState(birthdate);
   console.log(username, favcolour, birthday);
 
   const handleEdit = () => {
@@ -71,7 +71,7 @@ const SettingsView = () => {
                   type="text"
                   name="colour"
                   onChange={(e) => setBirthday(e.target.value)}
-                  value={birthdate}
+                  value={birthday}
                   required
                 />
               </div>
@@ -82,7 +82,7 @@ const SettingsView = () => {
                   type="text"
                   name="colour"
                   onChange={(e) => setColour(e.target.value)}
-                  value={colour}
+                  value={favcolour}
                   required
                 />
               </div>
