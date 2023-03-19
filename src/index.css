@@ -20,8 +20,11 @@ body {
 main {
   margin-top: 6rem;
 }
-ul {
+ul,
+li,
+a {
   list-style: none;
+  text-decoration: none;
   margin: 0;
   padding: 0;
 }
@@ -65,7 +68,7 @@ ul {
 .card {
   color: var(--text-color);
   position: relative;
-  width: 30%;
+  /* width: 30%; */
   height: fit-content;
   padding: 1rem;
   display: flex;

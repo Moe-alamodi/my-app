@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../context/user-context";
 import "./SettingsView.css";
 
@@ -9,14 +9,13 @@ const SettingsView = () => {
   const [username, setUsername] = useState(name);
   const [favcolour, setColour] = useState(colour);
   const [birthday, setBirthday] = useState(birthdate);
-  console.log(username, favcolour, birthday);
 
   const handleEdit = () => {
     setIsEditing(true);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    authUser.login({ username, favcolour, birthday });
+    authUser.updateUser({ username, birthday, favcolour });
     setIsEditing(false);
   };
   const toggleTheme = () => {
@@ -25,7 +24,7 @@ const SettingsView = () => {
 
   return (
     <div className="settings">
-      <h1>Welcome to your Profile {username}</h1>
+      <h1>Welcome to your Profile {name}</h1>
       <div className="settings__container">
         <button className="button emoji" onClick={toggleTheme}>
           {authUser.theme ? "🌚" : "🌝"}
@@ -61,7 +60,7 @@ const SettingsView = () => {
                   type="text"
                   name="colour"
                   onChange={(e) => setUsername((prev) => e.target.value)}
-                  value={name}
+                  value={username}
                   required
                 />
               </div>

@@ -13,7 +13,9 @@ const Header = () => {
 
   return (
     <header className="header">
-      <h1>Pizzafy</h1>
+      <Link to={"/"}>
+        <h1>Pizzafy</h1>
+      </Link>
       {authUser.authenticated ? (
         <nav className="list">
           <ul>
@@ -33,13 +35,7 @@ const Header = () => {
           </ul>
         </nav>
       ) : (
-        <ul>
-          <li>
-            <Link className="button" to="/login">
-              login
-            </Link>
-          </li>
-        </ul>
+        ""
       )}
     </header>
   );

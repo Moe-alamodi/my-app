@@ -1,6 +1,5 @@
 import "./App.css";
 import { Route, Navigate, Routes } from "react-router-dom";
-import LogIn from "./components/Login";
 import DashboardView from "./components/DashboardView";
 import SettingsView from "./components/SettingsView";
 import Layout from "./components/Layout";
@@ -18,18 +17,14 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            authUser.authenticated ? (
-              <DashboardView />
-            ) : (
-              <Navigate to="/login" />
-            )
+            authUser.authenticated ? <DashboardView /> : <Navigate to="/" />
           }
         />
-        <Route path="/login" element={<LogIn />} />
+
         <Route
           path="/settings"
           element={
-            authUser.authenticated ? <SettingsView /> : <Navigate to="/login" />
+            authUser.authenticated ? <SettingsView /> : <Navigate to="/" />
           }
         />
         <Route path="/*" element={<h1>code 404. page is not found</h1>} />

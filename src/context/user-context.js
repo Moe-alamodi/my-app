@@ -2,19 +2,23 @@ import React, { useContext, useState } from "react";
 
 const UserContext = React.createContext();
 
-export function useAuth() {
-  return useContext(UserContext);
-}
-
 export function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [theme, setTheme] = useState(false);
-  const isAuthenticated = () => {
-    setAuthenticated(true);
+
+  const updateUser = (updateUser) => {
+    setUser({
+      ...user,
+      name: updateUser.username,
+      colour: updateUser.favcolour,
+      birthdate: updateUser.birthday,
+    });
   };
+
   const login = (user) => {
     setUser(user);
+    setAuthenticated(true);
   };
   const logout = () => {
     setAuthenticated(false);
@@ -22,15 +26,15 @@ export function AuthProvider({ children }) {
   const setMode = () => {
     setTheme(!theme);
   };
-  console.log(user);
+
   return (
     <UserContext.Provider
       value={{
         user,
+        updateUser,
         login,
         logout,
         authenticated,
-        isAuthenticated,
         setMode,
         theme,
       }}
@@ -38,4 +42,7 @@ export function AuthProvider({ children }) {
       {children}
     </UserContext.Provider>
   );
+}
+export function useAuth() {
+  return useContext(UserContext);
 }

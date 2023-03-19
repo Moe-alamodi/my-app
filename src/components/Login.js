@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./login.css";
 import { users } from "../fake-server/users";
 import { useAuth } from "../context/user-context";
@@ -11,11 +11,9 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    const account = users.find((user) => user.name === username);
+    const account = users.find((user) => user.username === username);
     if (account && account.password === password) {
       authUser.login(account);
-      authUser.isAuthenticated(true);
-
       navigate("/dashboard");
     } else {
       setError(true);
@@ -25,8 +23,6 @@ const Login = () => {
   };
   return (
     <div className="container">
-      <h1>Wellcome back</h1>
-            <p>Sign in to your profile</p>
             
       <form className=" card login-card" onSubmit={handleSubmit}>
               
