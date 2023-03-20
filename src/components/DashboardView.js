@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import "./DashboardView.css";
 
 const DashboardView = () => {
@@ -6,40 +6,39 @@ const DashboardView = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, sethttpError] = useState(null);
 
-  const fetchRecipesHandler = useCallback(async () => {
-    console.log("fetching");
-    try {
-      const response = await fetch(
-        "https://forkify-api.herokuapp.com/api/search?q=pizza"
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-
-      const data = await response.json();
-      const loadedPizza = [];
-      data.recipes.map((item) => {
-        return loadedPizza.push({
-          id: item.recipe_id,
-          title: item.title,
-          rank: item.social_rank,
-          publisher: item.publisher,
-          publisher_url: item.publisher_url,
-          image_url: item.image_url,
-        });
-      });
-
-      setRecipes(loadedPizza);
-    } catch (error) {
-      setIsLoading(false);
-      sethttpError(error.message);
-    }
-    setIsLoading(false);
-  }, []);
-
   useEffect(() => {
-    fetchRecipesHandler();
-  }, [fetchRecipesHandler]);
+    async function fetchRacipes() {
+      console.log("fetching");
+      try {
+        const response = await fetch(
+          "https://forkify-api.herokuapp.com/api/search?q=pizza"
+        );
+        if (!response.ok) {
+          throw new Error("Something went wrong!");
+        }
+
+        const data = await response.json();
+        const loadedPizza = [];
+        data.recipes.map((item) => {
+          return loadedPizza.push({
+            id: item.recipe_id,
+            title: item.title,
+            rank: item.social_rank,
+            publisher: item.publisher,
+            publisher_url: item.publisher_url,
+            image_url: item.image_url,
+          });
+        });
+
+        setRecipes(loadedPizza);
+      } catch (error) {
+        setIsLoading(false);
+        sethttpError(error.message);
+      }
+      setIsLoading(false);
+    }
+    fetchRacipes();
+  }, []);
   let content = isLoading ? (
     <p>spinner</p>
   ) : (
